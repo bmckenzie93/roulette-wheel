@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import 'chart.js/auto';
-import { Data } from "./Data/Data";
 import PieChart from "./components/PieChart";
+import {Chart} from 'chart.js';
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import 'chart.js/auto';
+import { useState } from 'react';
+import { Data } from "./Data/Data";
 import './App.scss';
-
-
 import Sidebar from './components/sidebar/Sidebar';
 import Wheel from './components/wheel/Wheel';
+Chart.register(ChartDataLabels);
 
 export default function App() {
   const [chartData, setChartData] = useState({
@@ -27,7 +28,7 @@ export default function App() {
       }
     ]
   });
- 
+
   return (
     <div className="App">
       <p>Using Chart.js in React</p>

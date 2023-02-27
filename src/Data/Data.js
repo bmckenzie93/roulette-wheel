@@ -1,9 +1,8 @@
 export const Data = [
   {
     id: 1,
-    year: 2016,
-    userGain: 80000,
-    userLost: 823
+    name: 'Brandon',
+    group: 'dev-team'
   },
   {
     id: 2,
