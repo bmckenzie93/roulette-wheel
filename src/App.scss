@@ -9,9 +9,67 @@ html, body {
   color: #2c2c2c;
 }
 
-/* APP CONTAINER */
-.App {
-  display: flex;
-  min-height: 100vh;
-  min-width: 100vw;
+/* VARIABLES */
+:root {
+  --wheel-font: "Poppins",sans-serif;
+  --wheel-size: 50vw;
+  --wheel-slice-spacing: 50px;
+  --wheel-border-size: 5px;
+  --wheel-color: #000;
+  --neutral-color: #fff;
+  --PI: 3.14159265358979;
+  // --nb-item: 0;
+  // --item-nb: 0;
+  --selected-item: 2;
+  --nb-turn: 5;
+  --spinning-duration: 4s;
+  --reset-duration: 0.25s;
 }
+
+/* CONTAINER */
+.main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+
+  .notice {
+    text-transform: uppercase;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 30px;
+}
+@media (min-width: 576px){
+  .container {
+      max-width: 540px;
+  }}
+  @media (min-width: 768px){
+    .container {
+        max-width: 720px;
+    }}
+
+@media (min-width: 768px){
+.container {
+    max-width: 720px;
+}}
+@media (min-width: 992px){
+  .container {
+    max-width: 960px;
+}}
+@media (min-width: 1200px){
+  .container {
+      max-width: 1140px;
+  }}
+
+
+@media (min-width: 1900px) {
+.container {
+    max-width: 1610px;
+}}
+
+
+
