@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.scss';
 import Sidebar from './components/sidebar/Sidebar'
 import Wheel from './components/wheel/Wheel'

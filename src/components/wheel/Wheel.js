@@ -1,18 +1,34 @@
 import React, { useState } from "react";
-
-import Styles from "./Wheel.scss"; 
 import Data from "../../Data/Data.js"
+import Styles from "./Wheel.scss"; 
 
 const Wheel = () => {
   // STATES
   const [nameArray, setNameArray] = useState(Data)
-  const [selectedNumber, setSelectedNumber] = useState(0)
+  const [wheelState, setWheelState] = useState({
+    initial: true,
+    spinning: false,
+    showItems: false,
+    selected: 0
+  })
 
   // EVENTS
   const handleSelectNumber = () => {
-    const winner = Math.floor(Math.random() * (( nameArray.length + 1 ) - 0) + 0)
-    setSelectedNumber(winner)
+    const winner = Math.floor(Math.random() * (( nameArray.length  ) - 0) + 0)
+    setWheelState({...wheelState, selected: winner})
   }
+
+  const handleClickWheel = () => {
+    console.log('wheel clicked')
+    handleSelectNumber()
+    setWheelState({
+      ...wheelState,
+      showItems: true
+    })
+
+    //add .spinning to wheel
+  }
+
 
   // MAPS
   const wheelItems = nameArray.map( (name, index) => {
@@ -22,7 +38,7 @@ const Wheel = () => {
 
     return (
     <div key={index} 
-        className="wheel-item animated fadeIn selected"
+        className={`wheel-item animated ${wheelState.showItems && 'fadeIn'} selected`}
         style={wheelPlacement}>
       {name}
     </div>
@@ -35,7 +51,9 @@ const Wheel = () => {
         <h3 className="notice">Click the wheel to spin</h3>
         <div className="wheel-container">
 
-          <div className="wheel animated fadeIn spinning" onClick={handleSelectNumber}>
+          <div 
+            className= {`wheel animated fadeIn ${wheelState.spinning && 'spinning '}`} 
+            onClick={handleClickWheel} >
             {wheelItems}
           </div>
         </div>
@@ -46,8 +64,8 @@ const Wheel = () => {
               className=" "
               tabIndex="0"
               type="button">
-              <span>SELECT 'SELECTED PERSON'</span>
-              <span>{selectedNumber}</span>
+              <span>SELECT {nameArray[wheelState.selected]}</span>
+              <span> {wheelState.selected}</span>
             </button>
           </div>
         </div>

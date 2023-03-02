@@ -4,10 +4,6 @@
   margin: 0;
   padding: 0;
 }
-html, body {
-  background-color: #f4f4f4;
-  color: #2c2c2c;
-}
 
 /* VARIABLES */
 :root {
@@ -18,8 +14,6 @@ html, body {
   --wheel-color: #000;
   --neutral-color: #fff;
   --PI: 3.14159265358979;
-  // --nb-item: 0;
-  // --item-nb: 0;
   --selected-item: 2;
   --nb-turn: 5;
   --spinning-duration: 4s;
@@ -38,38 +32,49 @@ html, body {
     text-transform: uppercase;
   }
 }
-
 .container {
   margin: 0 auto;
   padding: 0 30px;
-}
-@media (min-width: 576px){
-  .container {
-      max-width: 540px;
-  }}
+
+  @media (min-width: 576px){
+    max-width: 540px;
+  }
   @media (min-width: 768px){
-    .container {
-        max-width: 720px;
-    }}
-
-@media (min-width: 768px){
-.container {
     max-width: 720px;
-}}
-@media (min-width: 992px){
-  .container {
+  }
+  @media (min-width: 768px){
+    max-width: 720px;
+  }
+  @media (min-width: 992px){
     max-width: 960px;
-}}
-@media (min-width: 1200px){
-  .container {
-      max-width: 1140px;
-  }}
-
-
-@media (min-width: 1900px) {
-.container {
+  }
+  @media (min-width: 1200px){
+    max-width: 1140px;
+  }
+  @media (min-width: 1900px) {
     max-width: 1610px;
-}}
+  }
+}
+
+/* UTILITY */
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation:  1s fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 
 
