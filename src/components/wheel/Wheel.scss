@@ -56,14 +56,9 @@
   width: var(--wheel-size);
 
   &.spinning {
-    -webkit-transition: -webkit-transform var(--spinning-duration);
-    transition: -webkit-transform var(--spinning-duration);
     transition: transform var(--spinning-duration);
-    transition: transform var(--spinning-duration),-webkit-transform var(--spinning-duration);
-    -webkit-transform: rotate(calc(var(--nb-turn)*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)));
     transform: rotate(calc(var(--nb-turn)*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)));
   }
-
 }
 
 

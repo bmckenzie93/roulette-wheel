@@ -6,27 +6,22 @@ const Wheel = () => {
   // STATES
   const [nameArray, setNameArray] = useState(Data)
   const [wheelState, setWheelState] = useState({
-    initial: true,
-    spinning: false,
     showItems: false,
-    selected: 0
+    spinning: false,
+    selected: 0,
   })
 
   // EVENTS
-  const handleSelectNumber = () => {
-    const winner = Math.floor(Math.random() * (( nameArray.length  ) - 0) + 0)
-    setWheelState({...wheelState, selected: winner})
-  }
-
   const handleClickWheel = () => {
-    console.log('wheel clicked')
-    handleSelectNumber()
+    let randomNum = Math.floor(Math.random() * (( nameArray.length  ) - 0) + 0)
+
     setWheelState({
       ...wheelState,
-      showItems: true
+      showItems: true,
+      spinning: true,
+      selected: randomNum,
+      placement: `transform: translateY(-50%) rotate(calc(${randomNum}*360deg/${nameArray.length}))`
     })
-
-    //add .spinning to wheel
   }
 
 
@@ -38,7 +33,7 @@ const Wheel = () => {
 
     return (
     <div key={index} 
-        className={`wheel-item animated ${wheelState.showItems && 'fadeIn'} selected`}
+        className={`wheel-item animated ${wheelState.showItems && 'fadeIn'} ${wheelState.selected === index && 'selected'}`}
         style={wheelPlacement}>
       {name}
     </div>
@@ -54,6 +49,7 @@ const Wheel = () => {
           <div 
             className= {`wheel animated fadeIn ${wheelState.spinning && 'spinning '}`} 
             onClick={handleClickWheel} >
+            
             {wheelItems}
           </div>
         </div>
