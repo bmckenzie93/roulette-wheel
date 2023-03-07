@@ -4,6 +4,12 @@ const Data = [
   'Akili',
   'Grandpa',
   'Dan',
-  'Jeremy'
+  'Jeremy',
+  'Another',
+  'Mike',
+  'Tray',
+  'Billy',
+  'Bobby',
+  'Zero'
 ];
 export default Data;
