@@ -1,11 +1,17 @@
 import React from 'react'
 import Styles from './Sidebar.scss'
+import {  FaCog } from 'react-icons/fa'
 
 const Sidebar = () => {
   return (
-    <div className='sidebar'>
-      Sidebar
-    </div>
+  <>
+      <span className='sidebar-icon'>
+        <FaCog fill='#f4f4f4' size="2rem" /> 
+      </span>
+      
+      <div className='sidebar'>
+      </div>
+    </>
   )
 }
 
