@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Styles from './Sidebar.scss'
 import {  FaCog, FaRegTrashAlt  } from 'react-icons/fa'
 import { SlClose } from 'react-icons/sl'
+import { RiUserAddLine } from 'react-icons/ri'
 import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 const Sidebar = (props) => {
@@ -12,7 +13,8 @@ const Sidebar = (props) => {
   */
 
     const [settingsState, setSettingsState] = useState({
-      open: false
+      open: true, //make false by default after dev
+      addingUser: false
     })
 
     const handleMenuOpen = () => {
@@ -21,6 +23,18 @@ const Sidebar = (props) => {
         ...settingsState,
         open: !settingsState.open
       })
+    }
+
+    const handleShowInput = () => {
+      setSettingsState({
+        ...settingsState,
+        addingUser: !settingsState.addingUser
+      })
+    }
+
+    const handleAddUser = () => {
+      handleShowInput()
+      alert('user added')
     }
 
     const userList = props.data.map( user => (
@@ -34,7 +48,6 @@ const Sidebar = (props) => {
       </div>
     ));
 
-
   return (
   <>
       <span className='sidebar-icon' onClick={handleMenuOpen}>
@@ -43,8 +56,14 @@ const Sidebar = (props) => {
 
       <div className={`sidebar ${settingsState.open && 'show'}`}>
         <form className='sidebar-settings'>
-        <h2 className='sidebar-settings-title'>user settings</h2>
-        {userList}
+          <h2 className='sidebar-settings-title'>user settings</h2>
+          {settingsState.addingUser ?
+            <span className='sidebar-add'>
+              <input type='text' className='sidebar-add-input' /> <RiUserAddLine onClick={handleAddUser} />
+            </span> :
+            <span className='sidebar-add' onClick={handleShowInput}>Add New User<RiUserAddLine style={{marginLeft:'.5rem'}}/></span>}
+
+          {userList}
         </form>
       </div>
     </>

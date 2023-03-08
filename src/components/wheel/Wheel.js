@@ -4,14 +4,10 @@ import Styles from "./Wheel.scss";
 const Wheel = (props) => {
   /*
     TO DO LIST:
-
-    -FIX SPIN: spin 5 times then land correctly
-
     -list names alphabetically + capitalize first letter of each word
-    -corner cog icon to admin sidebar to add and remove people
+    -add, remove, exclude people
     -firebase back end
     -routes to create 3 iterations of this wheel for each pillar
-    -exclution option for people
   */
 
   // STATES
@@ -35,7 +31,8 @@ const Wheel = (props) => {
       selected: randomNum,
       rotationDeg: wheelState.rotationDeg + (360*5),
       wheelPosition: {
-        transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (360 / props.data.length))}deg))`
+        transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (-360 / props.data.length))}deg))`
+        //    transform: rotate(calc(var(--nb-turn)*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)));
       }
     })
   };
