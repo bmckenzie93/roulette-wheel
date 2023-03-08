@@ -6,12 +6,13 @@ import Wheel from './components/wheel/Wheel'
 
 
 export default function App() {
-  const [userData, setuserData] = useState(Data)
+  const [userDataState, setUserDataState] = useState(Data)
+  console.log(userDataState)
 
   return (
     <div className="App">
-      <Sidebar data={userData} />
-      <Wheel data={userData} />
+      <Sidebar data={userDataState} />
+      <Wheel data={userDataState} />
     </div>
   );
 }

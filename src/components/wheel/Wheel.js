@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Styles from "./Wheel.scss"; 
 
-const Wheel = ({data}) => {
+const Wheel = (props) => {
   /*
     TO DO LIST:
 
@@ -26,7 +26,7 @@ const Wheel = ({data}) => {
 
   // EVENTS
   const handleClickWheel = () => {
-    let randomNum = Math.floor(Math.random() * data.length)
+    let randomNum = Math.floor(Math.random() * props.data.length)
 
     setWheelState({
       ...wheelState,
@@ -35,30 +35,34 @@ const Wheel = ({data}) => {
       selected: randomNum,
       rotationDeg: wheelState.rotationDeg + (360*5),
       wheelPosition: {
-        transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (360 / data.length))}deg))`
+        transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (360 / props.data.length))}deg))`
       }
     })
-
-
   };
 
   // MAPS
-  const wheelItems = data.map( (name, index) => {
+  let userNames = [];
+
+  props.data.forEach(user => {
+    userNames.push(user.name)
+  })
+
+  const wheelItems = userNames.map( (user, index) => {
     const wheelItemPlacement = { 
-      transform: `translateY(-50%) rotate(calc(${index}*360deg/${data.length}))`
+      transform: `translateY(-50%) rotate(calc(${index}*360deg/${userNames.length}))`
     }
 
     return (
     <div key={index} 
         className={`wheel-item animated ${wheelState.showItems && 'fadeIn'} ${wheelState.selected === index ? 'selected' : ''}`}
         style={wheelItemPlacement}>
-      {name}
+      {user}
     </div>
   )})
   
 
   let wheelPosition = {
-    transform: `rotate(calc(${wheelState.selected}*360deg/${data.length}))`,
+    transform: `rotate(calc(${wheelState.selected}*360deg/${props.data.length}))`,
     transform: `rotate(calc(5*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)))`
   }
 
@@ -85,7 +89,7 @@ const Wheel = ({data}) => {
               className=" "
               tabIndex="0"
               type="button">
-              <span>SELECT {data[wheelState.selected]}</span>
+              <span>SELECT {userNames[wheelState.selected]}</span>
               <span> {wheelState.selected}</span>
             </button>
           </div>

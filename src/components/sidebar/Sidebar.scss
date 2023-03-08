@@ -35,10 +35,43 @@
   &-settings {
     border: 6px solid #2c2c2c;
     border-radius: 30px;
-    color: white;
+    color: #2c2c2c;
     padding: 2rem;
     width: 80vw;
+    max-width: 1200px;
     height: 80vh;
+    text-align: center;
+    font-size: 1.5rem;
+    overflow-y: scroll;
+    
+    h2 {
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .user {
+    padding: .5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px dotted white;
+    .disabled {
+      color: #ccc;
+    }
+    
+    &-icon {
+      transition: all .3s ease-in-out;
+      font-size: 2rem;
+      margin-left: 1rem;
+
+      &:hover { 
+        cursor: pointer; 
+        color: black;
+      }
+    }
   }
 }
 

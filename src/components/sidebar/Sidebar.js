@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Styles from './Sidebar.scss'
-import Data from "../../Data/Data.js"
-import {  FaCog  } from 'react-icons/fa'
+import {  FaCog, FaRegTrashAlt  } from 'react-icons/fa'
 import { SlClose } from 'react-icons/sl'
+import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai'
 
-const Sidebar = ({data}) => {
+const Sidebar = (props) => {
   /*
     TO DO:
     settings form to add, remove, edit people on the list.
@@ -23,6 +23,18 @@ const Sidebar = ({data}) => {
       })
     }
 
+    const userList = props.data.map( user => (
+      <div className='user'>
+        <strong className={user.disabled ? 'disabled' : ''}>{user.name}</strong>
+
+        <span className='user-icons'>
+          <span className='user-icon'>{user.disabled ? <AiOutlineEye /> : <AiFillEyeInvisible />}</span>
+          <span className='user-icon'><FaRegTrashAlt /></span>
+        </span>
+      </div>
+    ));
+
+
   return (
   <>
       <span className='sidebar-icon' onClick={handleMenuOpen}>
@@ -31,8 +43,8 @@ const Sidebar = ({data}) => {
 
       <div className={`sidebar ${settingsState.open && 'show'}`}>
         <form className='sidebar-settings'>
-        <h2 className='sidebar-settings-title'>settings</h2>
-
+        <h2 className='sidebar-settings-title'>user settings</h2>
+        {userList}
         </form>
       </div>
     </>
