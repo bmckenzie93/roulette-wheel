@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Data from "../../Data/Data.js"
 import Styles from "./Wheel.scss"; 
 
-const Wheel = () => {
+const Wheel = ({data}) => {
   /*
     TO DO LIST:
 
@@ -16,7 +15,7 @@ const Wheel = () => {
   */
 
   // STATES
-  const [nameArray, setNameArray] = useState(Data)
+
   const [wheelState, setWheelState] = useState({
     showItems: false,
     spinning: false,
@@ -27,7 +26,7 @@ const Wheel = () => {
 
   // EVENTS
   const handleClickWheel = () => {
-    let randomNum = Math.floor(Math.random() * nameArray.length)
+    let randomNum = Math.floor(Math.random() * data.length)
 
     setWheelState({
       ...wheelState,
@@ -36,7 +35,7 @@ const Wheel = () => {
       selected: randomNum,
       rotationDeg: wheelState.rotationDeg + (360*5),
       wheelPosition: {
-        transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (360 / nameArray.length))}deg))`
+        transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (360 / data.length))}deg))`
       }
     })
 
@@ -44,9 +43,9 @@ const Wheel = () => {
   };
 
   // MAPS
-  const wheelItems = nameArray.map( (name, index) => {
+  const wheelItems = data.map( (name, index) => {
     const wheelItemPlacement = { 
-      transform: `translateY(-50%) rotate(calc(${index}*360deg/${nameArray.length}))`
+      transform: `translateY(-50%) rotate(calc(${index}*360deg/${data.length}))`
     }
 
     return (
@@ -59,7 +58,7 @@ const Wheel = () => {
   
 
   let wheelPosition = {
-    transform: `rotate(calc(${wheelState.selected}*360deg/${nameArray.length}))`,
+    transform: `rotate(calc(${wheelState.selected}*360deg/${data.length}))`,
     transform: `rotate(calc(5*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)))`
   }
 
@@ -86,7 +85,7 @@ const Wheel = () => {
               className=" "
               tabIndex="0"
               type="button">
-              <span>SELECT {nameArray[wheelState.selected]}</span>
+              <span>SELECT {data[wheelState.selected]}</span>
               <span> {wheelState.selected}</span>
             </button>
           </div>

@@ -4,13 +4,52 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: antiquewhite;
+  background-color: #f4f4f4;
   z-index: 3;
-  transform: translateX(110%);
+  transform: translateX(-110%);
+  transition: all .5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.show {
+    transform: translateX(0%);
+  }
 
   &-icon {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    color: #f4f4f4;
+    transition: color .5s;
+    z-index: 999;
+
+    &:hover { 
+      cursor: pointer; 
+      color: #2c2c2c;
+      animation: gearSpin 5s infinite;
+    }
+    padding: 1rem;
+  }
+
+  &-settings {
+    border: 6px solid #2c2c2c;
+    border-radius: 30px;
+    color: white;
+    padding: 2rem;
+    width: 80vw;
+    height: 80vh;
+  }
+}
+
+@keyframes gearSpin {
+  0% {
+    transform: scale(1) rotate(0deg) ;
+  }
+  50% {
+    transform:  scale(1.2) rotate(180deg);
+  }
+  100%{
+    transform: scale(1) rotate(360deg);
   }
 }
