@@ -7,7 +7,6 @@ import Wheel from './components/wheel/Wheel'
 
 export default function App() {
   const [userDataState, setUserDataState] = useState(Data)
-  console.log(userDataState)
 
   return (
     <div className="App">

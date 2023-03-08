@@ -14,11 +14,11 @@ const Sidebar = (props) => {
 
     const [settingsState, setSettingsState] = useState({
       open: true, //make false by default after dev
-      addingUser: false
+      addingUser: false,
+      newUserName: ''
     })
 
     const handleMenuOpen = () => {
-      console.log('menu open')
       setSettingsState({
         ...settingsState,
         open: !settingsState.open
@@ -32,13 +32,29 @@ const Sidebar = (props) => {
       })
     }
 
-    const handleAddUser = () => {
-      handleShowInput()
-      alert('user added')
+    const handleNewUserName = name => {
+      setSettingsState({
+        ...settingsState,
+        newUserName: name
+      })
     }
 
-    const userList = props.data.map( user => (
-      <div className='user'>
+    const handleAddUser = () => {
+      if(settingsState.newUserName !== '') {
+        alert(settingsState.newUserName + ' ADDED')
+        setSettingsState({
+          ...settingsState,
+          newUserName: '',
+          addingUser: false
+        })
+      } else {
+        alert('THIS IS BLANK, SON!')
+      }
+
+    }
+
+    const userList = props.data.map( (user, index) => (
+      <div className='user' key={index}>
         <strong className={user.disabled ? 'disabled' : ''}>{user.name}</strong>
 
         <span className='user-icons'>
@@ -59,7 +75,7 @@ const Sidebar = (props) => {
           <h2 className='sidebar-settings-title'>user settings</h2>
           {settingsState.addingUser ?
             <span className='sidebar-add'>
-              <input type='text' className='sidebar-add-input' /> <RiUserAddLine onClick={handleAddUser} />
+              <input type='text' className='sidebar-add-input' value={settingsState.newUserName} onChange={e => handleNewUserName(e.target.value)} /> <RiUserAddLine onClick={handleAddUser} />
             </span> :
             <span className='sidebar-add' onClick={handleShowInput}>Add New User<RiUserAddLine style={{marginLeft:'.5rem'}}/></span>}
 

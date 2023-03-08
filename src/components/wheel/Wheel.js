@@ -10,8 +10,7 @@ const Wheel = (props) => {
     -routes to create 3 iterations of this wheel for each pillar
   */
 
-  // STATES
-
+  // STATE
   const [wheelState, setWheelState] = useState({
     showItems: false,
     spinning: false,
@@ -32,7 +31,6 @@ const Wheel = (props) => {
       rotationDeg: wheelState.rotationDeg + (360*5),
       wheelPosition: {
         transform: `rotate(calc(${wheelState.rotationDeg + (360 * 5) + (randomNum * (-360 / props.data.length))}deg))`
-        //    transform: rotate(calc(var(--nb-turn)*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)));
       }
     })
   };
