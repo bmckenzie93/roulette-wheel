@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Styles from './Sidebar.scss'
 import {  FaCog, FaRegTrashAlt  } from 'react-icons/fa'
 import { SlClose } from 'react-icons/sl'
@@ -6,12 +6,6 @@ import { RiUserAddLine } from 'react-icons/ri'
 import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 const Sidebar = (props) => {
-  /*
-    TO DO:
-    settings form to add, remove, edit people on the list.
-    ability to diable people that are on the list and disable the last person chosen  
-  */
-
     const [settingsState, setSettingsState] = useState({
       open: true, //make false by default after dev
       addingUser: false,
