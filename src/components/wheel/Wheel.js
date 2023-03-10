@@ -8,6 +8,7 @@ const Wheel = (props) => {
     -add, remove, exclude people
     -firebase back end
     -routes to create 3 iterations of this wheel for each pillar
+    //hide firebase keys in .env
   */
 
   // STATE

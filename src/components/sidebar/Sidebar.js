@@ -32,10 +32,10 @@ const Sidebar = (props) => {
       })
     }
 
-    const handleNewUserName = name => {
+    const handleNewUserName = e => {
       setSettingsState({
         ...settingsState,
-        newUserName: name
+        newUserName: e.target.value
       })
     }
 
@@ -75,7 +75,12 @@ const Sidebar = (props) => {
           <h2 className='sidebar-settings-title'>user settings</h2>
           {settingsState.addingUser ?
             <span className='sidebar-add'>
-              <input type='text' className='sidebar-add-input' value={settingsState.newUserName} onChange={e => handleNewUserName(e.target.value)} /> <RiUserAddLine onClick={handleAddUser} />
+              <input 
+                type='text' 
+                className='sidebar-add-input' 
+                value={settingsState.newUserName} 
+                onChange={e => handleNewUserName(e)} /> 
+              <RiUserAddLine onClick={handleAddUser} />
             </span> :
             <span className='sidebar-add' onClick={handleShowInput}>Add New User<RiUserAddLine style={{marginLeft:'.5rem'}}/></span>}
 
