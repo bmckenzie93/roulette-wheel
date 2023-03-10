@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Styles from './Sidebar.scss'
 import {  FaCog, FaRegTrashAlt  } from 'react-icons/fa'
 import { SlClose } from 'react-icons/sl'
@@ -7,8 +7,8 @@ import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 const Sidebar = (props) => {
     const [settingsState, setSettingsState] = useState({
-      open: true, //make false by default after dev
-      addingUser: false,
+      open: false,
+      showInput: false,
       newUserName: ''
     })
 
@@ -22,34 +22,20 @@ const Sidebar = (props) => {
     const handleShowInput = () => {
       setSettingsState({
         ...settingsState,
-        addingUser: !settingsState.addingUser
+        showInput: !settingsState.showInput
       })
     }
 
-    const handleNewUserName = e => {
+    const handleInput = e => {
       setSettingsState({
         ...settingsState,
         newUserName: e.target.value
       })
     }
 
-    const handleAddUser = () => {
-      if(settingsState.newUserName !== '') {
-        alert(settingsState.newUserName + ' ADDED')
-        setSettingsState({
-          ...settingsState,
-          newUserName: '',
-          addingUser: false
-        })
-      } else {
-        alert('THIS IS BLANK, SON!')
-      }
-
-    }
-
     const userList = props.data.map( (user, index) => (
-      <div className='user' key={index}>
-        <strong className={user.disabled ? 'disabled' : ''}>{user.name}</strong>
+      <li className='user' key={index}>
+        <strong className={user.disabled ? 'disabled' : ''}>{user.name}</strong> 
 
         <span className='user-icons'>
           <span className='user-icon'>
@@ -57,9 +43,9 @@ const Sidebar = (props) => {
             <AiOutlineEye onClick={()=> props.toggleDisable(user)} /> : 
             <AiFillEyeInvisible onClick={()=> props.toggleDisable(user)} />}
           </span>
-          <span className='user-icon'><FaRegTrashAlt /></span>
+          <span className='user-icon'><FaRegTrashAlt onClick={() => props.deleteUser(user.id)} /></span>
         </span>
-      </div>
+      </li>
     ));
 
   return (
@@ -69,20 +55,29 @@ const Sidebar = (props) => {
       </span>
 
       <div className={`sidebar ${settingsState.open && 'show'}`}>
-        <form className='sidebar-settings'>
+        <form className='sidebar-settings' onSubmit={props.createUser}>
           <h2 className='sidebar-settings-title'>user settings</h2>
-          {settingsState.addingUser ?
+          {settingsState.showInput ?
             <span className='sidebar-add'>
               <input 
                 type='text' 
                 className='sidebar-add-input' 
                 value={settingsState.newUserName} 
-                onChange={e => handleNewUserName(e)} /> 
-              <RiUserAddLine onClick={handleAddUser} />
+                onChange={e => handleInput(e)} /> 
+              <RiUserAddLine onClick={e => props.createUser(
+                e, 
+                settingsState.newUserName,
+                setSettingsState({
+                  ...settingsState,
+                  showInput: false,
+                  newUserName: ''
+                })
+                )} />
             </span> :
             <span className='sidebar-add' onClick={handleShowInput}>Add New User<RiUserAddLine style={{marginLeft:'.5rem'}}/></span>}
-
-          {userList}
+            <ul>
+              {userList}
+            </ul>
         </form>
       </div>
     </>
