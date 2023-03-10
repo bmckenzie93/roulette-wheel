@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.scss';
 import { db } from './firebase'
-import { query, collection, onSnapshot } from 'firebase/firestore'
+import { query, collection, onSnapshot, updateDoc, doc } from 'firebase/firestore'
 import Sidebar from './components/sidebar/Sidebar'
 import Wheel from './components/wheel/Wheel'
 
@@ -13,7 +13,6 @@ export default function App() {
     TO DO:
 
     -CREATE NAME
-    -READ NAME FROM DB
     -UPDATE NAME IN DB
     -DELETE NAME
   */
@@ -30,11 +29,16 @@ export default function App() {
     return () => unsubscribe()
   },[])
 
-  console.log(usersData)
+  const handleToggleDisable = async (user) => {
+    console.log('toggle disable')
+    await updateDoc(doc(db, 'pillar-1', user.id), {
+      disabled: !user.disabled
+    })
+  }
 
   return (
     <div className="App">
-      <Sidebar data={usersData} />
+      <Sidebar data={usersData} toggleDisable={handleToggleDisable} />
       <Wheel data={usersData} />
     </div>
   );

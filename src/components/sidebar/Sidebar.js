@@ -52,7 +52,11 @@ const Sidebar = (props) => {
         <strong className={user.disabled ? 'disabled' : ''}>{user.name}</strong>
 
         <span className='user-icons'>
-          <span className='user-icon'>{user.disabled ? <AiOutlineEye /> : <AiFillEyeInvisible />}</span>
+          <span className='user-icon'>
+            {user.disabled ? 
+            <AiOutlineEye onClick={()=> props.toggleDisable(user)} /> : 
+            <AiFillEyeInvisible onClick={()=> props.toggleDisable(user)} />}
+          </span>
           <span className='user-icon'><FaRegTrashAlt /></span>
         </span>
       </div>
