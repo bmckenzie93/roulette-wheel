@@ -70,6 +70,7 @@
   }
 
   &-item {
+    text-transform: capitalize;
     width: 50%;
     transform-origin: center left;
     // transform: translateY(-50%) rotate(calc(var(--item-nb)*360deg/var(--nb-item, 1)));

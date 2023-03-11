@@ -52,8 +52,7 @@ const Wheel = (props) => {
           {userNames.length < 1 ? 
           'Click settings to add names to the wheel' :
           'Click the wheel to spin!'}
-          
-          </h3>
+        </h3>
         <div className="wheel-container">
 
           <div 

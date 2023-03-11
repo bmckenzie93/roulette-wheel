@@ -20,6 +20,7 @@ export default function App() {
     - REACT ROUTER
     - CREATE A HOME PAGE, CHOOSE YOUR PILLAR
     - MAKE 3 SEPERATE PILLARS 
+    - AUTO FOCUS ADD USER INPUT
   */
   const [usersData, setUsersData] = useState([])
 

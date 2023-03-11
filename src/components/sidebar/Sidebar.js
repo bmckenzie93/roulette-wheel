@@ -29,7 +29,7 @@ const Sidebar = (props) => {
     const handleInput = e => {
       setSettingsState({
         ...settingsState,
-        newUserName: e.target.value
+        newUserName: e.target.value.toLowerCase()
       })
     }
 
@@ -46,8 +46,6 @@ const Sidebar = (props) => {
         </span>
       </li>
     ));
-
-
   return (
   <>
       <span className='sidebar-icon' onClick={handleMenuOpen}>
