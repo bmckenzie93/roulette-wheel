@@ -15,7 +15,13 @@ import Wheel from './components/wheel/Wheel'
 
 
 export default function App() {
-  const [usersData, setUsersData] = useState(['default item 1', 'default item 2'])
+  /*
+    TO DO:
+    - REACT ROUTER
+    - CREATE A HOME PAGE, CHOOSE YOUR PILLAR
+    - MAKE 3 SEPERATE PILLARS 
+  */
+  const [usersData, setUsersData] = useState([])
 
   useEffect(()=>{
     const q = query(collection(db, 'pillar-1'))
@@ -24,16 +30,18 @@ export default function App() {
       querySnapshot.forEach((doc) => {
         usersArr.push({...doc.data(), id: doc.id})
       });
-      setUsersData(usersArr)
+      const sortedUsersArr = [...usersArr].sort((a, b) =>
+        a.name > b.name ? 1 : -1,
+      );
+      setUsersData(sortedUsersArr)
     })
     return () => unsubscribe()
   },[])
 
   const handleCreateUser = async (e, value) => {
     e.preventDefault(e)
-    if(value === '') {
-      alert('THIS IS BLANK, SON!') // display this in the UI instead of an alert
-      return
+    if(value === null || value.match(/^ *$/) !== null) {
+      alert('Please add a name')
     } else {
       await addDoc(collection(db, 'pillar-1'), {
         name: value,
@@ -41,6 +49,7 @@ export default function App() {
       })
     }
   }
+
   const handleDeleteUser = async id => {
     await deleteDoc(doc(db, 'pillar-1', id))
   }

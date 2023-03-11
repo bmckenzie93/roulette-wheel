@@ -33,10 +33,9 @@ const Sidebar = (props) => {
       })
     }
 
-    const userList = props.data.map( (user, index) => (
+    const userList = props.data.map((user, index) => (
       <li className='user' key={index}>
         <strong className={user.disabled ? 'disabled' : ''}>{user.name}</strong> 
-
         <span className='user-icons'>
           <span className='user-icon'>
             {user.disabled ? 
@@ -47,6 +46,7 @@ const Sidebar = (props) => {
         </span>
       </li>
     ));
+
 
   return (
   <>
@@ -75,6 +75,7 @@ const Sidebar = (props) => {
                 )} />
             </span> :
             <span className='sidebar-add' onClick={handleShowInput}>Add New User<RiUserAddLine style={{marginLeft:'.5rem'}}/></span>}
+            <h3>Total users: {props.data.length}</h3>
             <ul>
               {userList}
             </ul>

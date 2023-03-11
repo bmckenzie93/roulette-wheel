@@ -46,29 +46,34 @@
     
     h2 {
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1rem;
     }
   }
-    &-add {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      transition: all .3s ease-in-out;
-      margin-bottom: 1rem;
-      height: 3rem;
-      &:hover {
-        cursor: pointer;
-        color: black;
-      }
 
-      &-input {
-        padding: .5rem;
-        width: 50%;
-        margin-right: 1rem;
-        font-size: 1.5rem;
-      }
+  &-add {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease-in-out;
+    margin-bottom: 1rem;
+    height: 3rem;
+    &:hover {
+      cursor: pointer;
+      color: black;
     }
+
+    &-input {
+      padding: .5rem;
+      width: 50%;
+      margin-right: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
   .user {
     padding: .5rem;
     width: 100%;
