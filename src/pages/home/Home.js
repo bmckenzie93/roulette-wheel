@@ -8,6 +8,8 @@ const Home = () => {
       <h1>Choose your pillar!</h1>
       <Link to='wanderlust'>WanderLust</Link>
       <Link to='digital'>Digital</Link>
+      <Link to='evolve'>Evolve</Link>
+      <Link to='purpose'>Purpose</Link>
     </div>
   )
 }
