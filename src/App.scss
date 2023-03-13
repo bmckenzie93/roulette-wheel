@@ -5,6 +5,8 @@
   padding: 0;
 }
 
+html {  }
+
 /* VARIABLES */
 :root {
   --wheel-font: "Poppins",sans-serif;
@@ -28,15 +30,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  position: fixed;
+  transform: translateX(50%);
 
+  .pillar-name { 
+    text-transform: uppercase; 
+    margin-bottom: 3rem;
+  }
   .notice {
-    text-transform: uppercase;
+    text-transform:uppercase;
   }
 }
 .container {
   margin: 0 auto;
-  padding: 0 30px;
+  // padding: 0 30px;
 
   @media (min-width: 576px){
     max-width: 540px;

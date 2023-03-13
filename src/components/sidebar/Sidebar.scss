@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f4f4f4;
   z-index: 3;
   transform: translateX(-110%);
@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 3rem;
 
   &.show {
     transform: translateX(0%);
@@ -23,6 +24,7 @@
     color: #f4f4f4;
     transition: color .5s;
     z-index: 999;
+    position: fixed;
 
     &:hover { 
       cursor: pointer; 
@@ -39,10 +41,9 @@
     padding: 2rem;
     width: 80vw;
     max-width: 1200px;
-    height: 80vh;
+    min-height: 80vh;
     text-align: center;
     font-size: 1.5rem;
-    overflow-y: scroll;
     
     h2 {
       text-transform: uppercase;

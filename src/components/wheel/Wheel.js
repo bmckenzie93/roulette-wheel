@@ -48,6 +48,7 @@ const Wheel = (props) => {
   return (
     <main>
       <div className="container main-container">
+        <h1 className="pillar-name">{props.pillar} wheel of fortune</h1>
         <h3 className="notice">
           {userNames.length < 1 ? 
           'Click settings to add names to the wheel' :

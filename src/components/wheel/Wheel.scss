@@ -54,6 +54,8 @@
   transition: transform var(--reset-duration),-webkit-transform var(--reset-duration);
   width: var(--wheel-size);
 
+
+
   &.spinning {
     transition: transform var(--spinning-duration);
     transform: rotate(calc(var(--nb-turn)*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)));
@@ -86,4 +88,5 @@
       color: #ff0;
     }
   }
+    h1 { text-transform: capitalize; }
 }

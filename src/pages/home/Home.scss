@@ -1,0 +1,26 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 70vh;
+  
+  h1 {
+    margin-bottom: 3rem;
+  }
+
+  a {
+    color: #2c2c2c;
+    padding-bottom: 2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,74 +1,32 @@
-import { useState, useEffect } from 'react'
 import './App.scss';
-import { db } from './firebase'
-import { 
-  query, 
-  collection, 
-  onSnapshot, 
-  updateDoc, 
-  deleteDoc,
-  doc,
-  addDoc 
-} from 'firebase/firestore'
-import Sidebar from './components/sidebar/Sidebar'
-import Wheel from './components/wheel/Wheel'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom'
+import Home from './pages/home/Home'
+import WanderLust from './pages/wanderlust/WanderLust';
+import Digital from './pages/digital/Digital';
 
 
 export default function App() {
   /*
     TO DO:
-    - REACT ROUTER
-    - CREATE A HOME PAGE, CHOOSE YOUR PILLAR
-    - MAKE 3 SEPERATE PILLARS 
-    - AUTO FOCUS ADD USER INPUT
+    
+    - SECRET EXCLUDE FUNCTION
+    - AUTH
   */
-  const [usersData, setUsersData] = useState([])
-
-  useEffect(()=>{
-    const q = query(collection(db, 'pillar-1'))
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let usersArr = []
-      querySnapshot.forEach((doc) => {
-        usersArr.push({...doc.data(), id: doc.id})
-      });
-      const sortedUsersArr = [...usersArr].sort((a, b) =>
-        a.name > b.name ? 1 : -1,
-      );
-      setUsersData(sortedUsersArr)
-    })
-    return () => unsubscribe()
-  },[])
-
-  const handleCreateUser = async (e, value) => {
-    e.preventDefault(e)
-    if(value === null || value.match(/^ *$/) !== null) {
-      alert('Please add a name')
-    } else {
-      await addDoc(collection(db, 'pillar-1'), {
-        name: value,
-        disabled: false
-      })
-    }
-  }
-
-  const handleDeleteUser = async id => {
-    await deleteDoc(doc(db, 'pillar-1', id))
-  }
-
-  const handleToggleDisableUser = async (user) => {
-    await updateDoc(doc(db, 'pillar-1', user.id), {
-      disabled: !user.disabled
-    })
-  }
 
   return (
-    <div className="App">
-      <Sidebar 
-        data={usersData} 
-        toggleDisable={handleToggleDisableUser}
-        createUser={handleCreateUser}
-        deleteUser={handleDeleteUser} />
-      <Wheel data={usersData} />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path='wanderlust' element={<WanderLust  />} />
+          <Route path='digital' element={<Digital  />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
