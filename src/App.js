@@ -16,7 +16,6 @@ export default function App() {
     TO DO:
 
     - SECRET EXCLUDE FUNCTION
-    - AUTH
   */
 
   return (

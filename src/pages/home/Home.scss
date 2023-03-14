@@ -4,23 +4,51 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 70vh;
+  padding: 6rem 0;
   
   h1 {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
-
-  a {
-    color: #2c2c2c;
-    padding-bottom: 2rem;
-    font-size: 1.5rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: all .3s ease-in-out;
-
-    &:hover {
-      color: black;
-      font-weight: bold;
+  p {
+    max-width: 600px;
+    padding: 0 3rem;
+    margin-bottom: 6rem;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  .pillar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 3rem;
+    a {
+      color: #2c2c2c;
+      padding-bottom: 2rem;
+      font-size: 1.5rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .3s ease-in-out;
+  
+      &:hover {
+        color: black;
+        font-weight: bold;
+      }
+    }
+    &-icon {
+      color: #ccc;
+      transition: color .5s;
+      z-index: 999;
+  
+      &:hover { 
+        cursor: pointer; 
+        color: #2c2c2c;
+        animation: gearSpin 5s infinite;
+      }
     }
   }
+
+
 }
