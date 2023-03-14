@@ -54,8 +54,6 @@
   transition: transform var(--reset-duration),-webkit-transform var(--reset-duration);
   width: var(--wheel-size);
 
-
-
   &.spinning {
     transition: transform var(--spinning-duration);
     transform: rotate(calc(var(--nb-turn)*360deg + -360deg*var(--selected-item)/var(--nb-item, 1)));
@@ -68,7 +66,7 @@
     box-sizing: border-box;
     top: 50%;
     left: 50%;
-    transition: all 1s ease-out;
+    transition: all 1s ease-in-out;
   }
 
   &-item {
@@ -81,6 +79,8 @@
     padding: 0 25px 0 50px;
     font-family: var(--wheel-font);
     opacity: 0;
+    transition-delay: 3s;
+    transition-property: color, font-size, font-weight;
     &.fadeIn { opacity: 1; }
     &.selected {
       font-size: 20px;
