@@ -5,6 +5,7 @@
   align-items: center;
   width: 100vw;
   padding: 6rem 0;
+  position: fixed;
   
   h1 {
     margin-bottom: 2rem;
@@ -40,7 +41,6 @@
     &-icon {
       color: #ccc;
       transition: color .5s;
-      z-index: 999;
   
       &:hover { 
         cursor: pointer; 

@@ -1,23 +1,15 @@
 import React, { useState } from 'react'
 import Styles from './Sidebar.scss'
-import {  FaCog, FaRegTrashAlt  } from 'react-icons/fa'
+import { FaRegTrashAlt } from 'react-icons/fa'
 import { SlClose } from 'react-icons/sl'
 import { RiUserAddLine } from 'react-icons/ri'
 import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 const Sidebar = (props) => {
     const [settingsState, setSettingsState] = useState({
-      open: false,
       showInput: false,
       newUserName: ''
     })
-
-    const handleMenuOpen = () => {
-      setSettingsState({
-        ...settingsState,
-        open: !settingsState.open
-      })
-    }
 
     const handleShowInput = () => {
       setSettingsState({
@@ -41,20 +33,20 @@ const Sidebar = (props) => {
             {user.disabled ? 
             <AiOutlineEye onClick={()=> props.toggleDisable(user)} /> : 
             <AiFillEyeInvisible onClick={()=> props.toggleDisable(user)} />}
-          </span>
+          </span> 
           <span className='user-icon'><FaRegTrashAlt onClick={() => props.deleteUser(user.id)} /></span>
         </span>
       </li>
     ));
   return (
   <>
-      <span className='sidebar-icon' onClick={handleMenuOpen}>
-        { settingsState.open ? <SlClose size="2rem" fill='#2c2c2c' /> : <FaCog size="2rem" /> }
+      <span className='sidebar-icon' onClick={props.toggleMenu}>
+        { props.open && <SlClose size="2rem" fill='#2c2c2c' /> }
       </span>
 
-      <div className={`sidebar ${settingsState.open && 'show'}`}>
+      <div className={`sidebar ${props.open && 'show'}`}>
         <form className='sidebar-settings' onSubmit={props.createUser}>
-          <h2 className='sidebar-settings-title'>user settings</h2>
+          <h2 className='sidebar-settings-title'>{props.pillar} user settings</h2>
           {settingsState.showInput ?
             <span className='sidebar-add'>
               <input 
